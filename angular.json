@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "voyagu-flights-service_16v": {
+    "voyagu-flights-serivce_16v": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,8 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/voyagu-flights-service_16v",
+            "outputPath": "dist/voyagu-flights-serivce_16v",
+            "baseHref": "/voyagu-flights-serivce_16v/",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
