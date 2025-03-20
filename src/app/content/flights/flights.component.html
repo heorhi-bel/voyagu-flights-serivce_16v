@@ -1,0 +1,48 @@
+<div class="flights-content">
+  <div class="filters">
+    <div>
+      <label>Stops</label>
+      <select [(ngModel)]="filters.stops" (change)="displayedFlights$ = getFilteredAndSortedFlights()">
+        <option *ngFor="let stop of filters.stops" [value]="stop">{{ stop }} stop(s)</option>
+      </select>
+    </div>
+  
+    <div>
+      <label>Airlines</label>
+      <select [(ngModel)]="filters.airlines" (change)="displayedFlights$ = getFilteredAndSortedFlights()">
+        <option *ngFor="let airline of filters.airlines" [value]="airline">{{ airline }}</option>
+      </select>
+    </div>
+  
+    <div>
+      <label>Price Range</label>
+      ${{ filters.price[0] }} - ${{ filters.price[1] }}
+      <p-slider 
+        [(ngModel)]="filters.price" 
+        (change)="displayedFlights$ = getFilteredAndSortedFlights()"
+        [range]="true" 
+        [min]="1"
+        [max]="filters.price[1]"
+        styleClass="w-56" 
+      /> 
+    </div>
+  
+    <div>
+      <label>Sort By</label>
+      <select (change)="onSortChange($any($event.target).value)">
+        <option value="price">Price</option>
+        <option value="departure_time">Departure Time</option>
+      </select>
+    </div>
+    <range-slider (onChange)="changeFilter('amount', $event)"></range-slider>
+    filters
+  </div>
+  <div class="flights-list">
+    <ng-container *ngFor="let card of (displayedFlights$ | async)">
+      <app-card [data]="card" ></app-card> 
+    </ng-container>
+    <button class="show-more-button" *ngIf="(displayedFlights$ | async)?.length < flights?.length" (click)="showMore()">
+      Show more
+    </button>
+  </div>
+</div>

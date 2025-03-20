@@ -1,0 +1,80 @@
+<!-- <div class="card">
+  <div class="main">
+    <div class="line">
+      <div class="logo"></div>
+      <div class="info">
+        <div class="departure"></div>
+        <div class=""></div>
+      </div>
+    </div>
+  </div>
+  <div class="side">side</div>
+</div> -->
+
+<div class="flight-card">
+  <div class="flight-segments">
+    <div class="flight-segment">
+      <img
+        src="https://d263qmvlt29h99.cloudfront.net/{{data?.flights[0].airline}}.svg"
+        class="airline-logo"
+      />
+      <div class="segment-info">
+        <div class="time-group">
+          <div class="time">{{getDateObject(data?.flights[0].departure_time) | date:'hh:mma'}}</div>
+          <div class="location-group">
+            <div class="airport-code">{{data.flights[0].departure_airport}}</div>
+            <div class="separator-dot"></div>
+            <div class="flight-date departure">{{data.flights[0].departure_date | date:'MMM d'}}</div>
+          </div>
+        </div>
+        <div class="time-group">
+          <div class="time">{{getDateObject(data?.flights[0].arrival_time) | date:'hh:mma'}}</div>
+          <div class="location-group">
+            <div class="airport-code">{{data.flights[0].arrival_airport}}</div>
+            <div class="separator-dot"></div>
+            <div class="flight-date arrival">{{data?.flights[0].arrival_date | date:'MMM d'}}</div>
+          </div>
+        </div>
+        <div class="duration-group">
+          <div class="time">{{formatDuration(data?.flights[0].duration_minutes)}}</div>
+          <div class="flight-type">{{ stopsLabel(data?.flights[0].stops) }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="flight-segment">
+      <img
+        src="https://d263qmvlt29h99.cloudfront.net/{{data?.flights[1].airline}}.svg"
+        class="airline-logo"
+      />
+      <div class="segment-info">
+        <div class="time-group">
+          <div class="time">{{getDateObject(data?.flights[1].departure_time) | date:'hh:mma'}}</div>
+          <div class="location-group">
+            <div class="airport-code">{{data?.flights[1].departure_airport}}</div>
+            <div class="separator-dot"></div>
+            <div class="flight-date">{{data?.flights[1].departure_date | date:'MMM d'}}</div>
+          </div>
+        </div>
+        <div class="time-group">
+          <div class="time">{{getDateObject(data?.flights[1].arrival_time) | date:'hh:mma'}}</div>
+          <div class="location-group">
+            <div class="airport-code">{{data?.flights[1].arrival_airport}}</div>
+            <div class="separator-dot"></div>
+            <div class="flight-date">{{data?.flights[1].arrival_date | date : 'MMM d'}}</div>
+          </div>
+        </div>
+        <div class="duration-group">
+          <div class="time">{{formatDuration(data?.flights[1].duration_minutes)}}</div>
+          <div class="flight-type">{{ stopsLabel(data?.flights[1].stops) }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="booking-actions">
+    <div class="price-container">
+      <div class="price-amount">${{data?.price}}</div>
+      <div class="price-label">Per adult</div>
+    </div>
+    <button class="book-button" (click)="book(data)">Book</button>
+  </div>
+</div>

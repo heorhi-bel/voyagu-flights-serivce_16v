@@ -1,0 +1,217 @@
+// Общие стили
+$primary-color: rgba(10, 29, 61, 1);
+$secondary-color: rgba(226, 224, 227, 1);
+$disabled-color: rgba(241, 241, 241, 1);
+$error-color: rgba(229, 46, 46, 1);
+$background-color: rgba(255, 255, 255, 1);
+$highlight-color: rgba(47, 123, 234, 1);
+
+%input-style {
+  border-radius: 8px;
+  border: 1px solid $secondary-color;
+  padding: 12px;
+  width: 100%;
+  color: $primary-color;
+}
+
+%label-style {
+  color: rgba(137, 131, 144, 1);
+  display: block;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.form-section {
+  min-width: 240px;
+  flex: 1;
+}
+
+.form-container {
+  margin-top: 12px;
+  width: 100%;
+}
+
+.section-title,
+.summary-title {
+  color: $primary-color;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.traveler-title,
+.price-label,
+.total-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: $primary-color;
+}
+
+.traveler-form {
+  background-color: $background-color;
+  border: 1px solid $secondary-color;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.form-field {
+  margin-top: 16px;
+  font-size: 14px;
+}
+
+.form-label {
+  @extend %label-style;
+}
+
+.form-input {
+  @extend %input-style;
+  &.form-input-error {
+    background-color: rgba(253, 238, 238, 1);
+    border-color: $error-color;
+  }
+}
+
+.radio-group,
+.date-group,
+.dropdown-container {
+  margin: 16px 16px 0 0;
+  width: 100%;
+}
+.date-group{
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.radio-buttons {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.radio-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: $primary-color;
+}
+
+.radio-circle {
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  border: 1px solid $secondary-color;
+  background-color: $background-color;
+  &.radio-selected {
+    border-color: $highlight-color;
+  }
+}
+
+.radio-text {
+  font-size: 14px;
+}
+
+.dropdown-label {
+  @extend %label-style;
+  font-size: 14px;
+}
+
+.dropdown-field {
+  @extend %input-style;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dropdown-disabled {
+  background-color: $disabled-color;
+}
+
+.dropdown-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  min-height: 20px;
+  padding: 7px 5px;
+}
+
+.icon-image {
+  width: 9px;
+  aspect-ratio: 1.33;
+  object-fit: contain;
+}
+
+.action-buttons {
+  display: flex;
+  margin-top: 24px;
+  gap: 16px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.btn {
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.btn-secondary {
+  background-color: $background-color;
+  border: 1px solid $secondary-color;
+  color: $primary-color;
+}
+
+.btn-primary {
+  background-color: $primary-color;
+  border: none;
+  color: $background-color;
+}
+
+.summary-content {
+  background-color: $background-color;
+  border: 1px solid $secondary-color;
+  margin-top: 12px;
+  padding: 16px;
+  border-radius: 12px;
+}
+
+.flight-price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 16px;
+  border-bottom: 1px solid $secondary-color;
+}
+
+.price-amount {
+  font-size: 14px;
+}
+
+.total-price {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+  align-items: flex-end;
+}
+
+.total-amount {
+  font-weight: 400;
+  line-height: 32px;
+
+  .amount-large {
+    font-size: 32px;
+  }
+}
+
+.p-invalid {
+    border-color: rgba(229, 46, 46, 1) !important;
+    background-color: rgba(253, 238, 238, 1);
+  }

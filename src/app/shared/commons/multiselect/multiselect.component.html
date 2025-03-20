@@ -1,0 +1,46 @@
+<p-multiSelect
+  [options]="options"
+  [(ngModel)]="value"
+  (onChange)="onChangeValue($event)"
+  (onClear)="onClearValue()"
+  [showHeader]="showHeader"
+  [styleClass]="styleClass"
+  (onFocus)="onFocus()"
+  (onBlur)="onBlur()"
+  (onPanelShow)="onShow()"
+  [inputId]="inputId ? inputId : ''"
+  [appendTo]="appendTo"
+  [overlayOptions]="{ baseZIndex: 50000 }"
+  [disabled]="disabled"
+  [showToggleAll]="showToggleAll"
+  [optionValue]="optionValue"
+  [optionLabel]="optionLabel"
+  [optionDisabled]="optionDisabled"
+  [dropdownIcon]="iconClass"
+  [virtualScroll]="virtualScroll"
+  [maxSelectedLabels]="maxSelectedLabels"
+  [selectedItemsLabel]="'global.selectedItemsLabel'"
+  [placeholder]="placeholder ? placeholder : ('global.choose')"
+  [showClear]="showClear"
+  [overlayOptions]="{ hideTransitionOptions: inModal() ? '0s' : '.1s linear' }"
+>
+  <ng-template pTemplate="item" let-item>
+    {{ translateDictionaries ? (resolveFieldData(item, optionLabel)) : resolveFieldData(item, optionLabel) }}
+  </ng-template>
+  <ng-template let-value pTemplate="selectedItems">
+    <ng-container *ngIf="selectedOptions as selected">
+      <ng-container *ngIf="!selected?.length">{{ placeholder ? placeholder : ('global.choose') }}</ng-container>
+      <ng-container *ngIf="selected && selected.length > maxSelectedLabels">
+        {{ multiselect?.valuesAsString }}
+      </ng-container>
+      <ng-container *ngIf="selected && selected.length <= maxSelectedLabels">
+        <ng-container *ngFor="let option of selected; last as last">
+          <span *ngIf="option">
+            {{ translateDictionaries ? (resolveFieldData(option, optionLabel)) : resolveFieldData(option, optionLabel) }}
+          </span>
+          <ng-container *ngIf="!last">,&nbsp;</ng-container>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+  </ng-template>
+</p-multiSelect>

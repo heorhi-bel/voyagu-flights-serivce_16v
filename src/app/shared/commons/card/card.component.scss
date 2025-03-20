@@ -1,0 +1,169 @@
+// .card{
+//     display: flex;
+//     flex-flow: row nowrap;
+//     width: 624px;
+//     height: 160px;
+//     .main{
+//         width: 414px;
+//         padding: 24px;
+//         .line{
+//             width: 100%;
+//             .logo{
+//                 width: 40px;
+//                 height: 40px;
+//             }
+            
+//         }
+//     }
+//     .side{
+//         width: 160px;
+//         padding: 24px;
+//     }
+// }
+
+:host {
+    display: contents;
+  }
+  .flight-card {
+    margin: 0 0 24px 0;
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 1);
+    border: 1px solid rgba(226, 224, 227, 1);
+    display: flex;
+    align-items: stretch;
+    // overflow: hidden;
+    font-family:
+      Inter,
+      -apple-system,
+      Roboto,
+      Helvetica,
+      sans-serif;
+    justify-content: start;
+    flex-wrap: wrap;
+  }
+  .flight-segments {
+    align-self: start;
+    min-width: 240px;
+    padding: 24px;
+    // overflow: hidden;
+    font-size: 14px;
+    font-weight: 400;
+  }
+  .flight-segment {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 16px;
+    // overflow: hidden;
+    justify-content: start;
+  }
+  .flight-segment:not(:first-child) {
+    margin-top: 32px;
+  }
+  .airline-logo {
+    object-fit: contain;
+    object-position: center;
+    width: 40px;
+    height: 40px;
+    align-self: stretch;
+    margin: auto 0;
+  }
+  .segment-info {
+    align-self: stretch;
+    display: flex;
+    min-width: 240px;
+    margin: auto 0;
+    align-items: start;
+    gap: 36px;
+    overflow: hidden;
+    justify-content: start;
+    flex: 1;
+    flex-shrink: 1;
+    flex-basis: 0%;
+  }
+  .time-group {
+    overflow: hidden;
+    width: 90px;
+  }
+  .time {
+    color: rgba(10, 29, 61, 1);
+  }
+  .location-group {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    overflow: hidden;
+    color: rgba(137, 131, 144, 1);
+    justify-content: start;
+  }
+  .airport-code {
+    align-self: stretch;
+    margin: auto 0;
+  }
+  .separator-dot {
+    border-radius: 100px;
+    background-color: rgba(226, 224, 227, 1);
+    align-self: stretch;
+    display: flex;
+    margin: auto 0;
+    width: 4px;
+    flex-shrink: 0;
+    height: 4px;
+  }
+  .flight-date {
+    align-self: stretch;
+    margin: auto 0;
+  }
+  .duration-group {
+    overflow: hidden;
+  }
+  .flight-type {
+    color: rgba(137, 131, 144, 1);
+  }
+  .booking-actions {
+    border-left: 1px solid rgba(226, 224, 227, 1);
+    display: flex;
+    padding: 16px 24px;
+    flex-direction: column;
+    overflow: hidden;
+    align-items: stretch;
+    justify-content: end;
+    width: 210px;
+  }
+
+  .price-container {
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    align-items: center;
+    justify-content: start;
+  }
+  .price-amount {
+    color: rgba(10, 29, 61, 1);
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.6;
+  }
+  .price-label {
+    color: rgba(137, 131, 144, 1);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1;
+  }
+  .book-button {
+    border: none;
+    cursor: pointer;
+    align-self: stretch;
+    border-radius: 8px;
+    background-color: rgba(10, 29, 61, 1);
+    margin-top: 24px;
+    width: 100%;
+    padding: 12px 24px;
+    overflow: hidden;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 1);
+    font-weight: 500;
+    white-space: nowrap;
+    line-height: 1;
+  }
