@@ -16,6 +16,7 @@ const routes: Routes = [
         },
         component: FlightBookComponent,
     },
+    { path: '**', redirectTo: '/flights' }
   ];
 
 @NgModule({

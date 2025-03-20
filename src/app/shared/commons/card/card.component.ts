@@ -31,6 +31,9 @@ export class CardComponent{
     return stops === 0 ? 'Nonstop' : `${stops} stop`;
   }
   book(card: CardType){
-    this.router.navigate([`/flights/${card.id}`], {queryParams: card})
+    this.router.navigate([`/flights/${card.id}`], {queryParams: {price: card.price}})
+  }
+  getPriceFormat(price: string | number){
+    return (+price).toFixed(2);
   }
 }

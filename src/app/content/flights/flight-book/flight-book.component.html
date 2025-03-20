@@ -1,9 +1,8 @@
 <div class="content">
-  <form [formGroup]="form">
     <section class="form-section">
       <h1 class="section-title">Travelers</h1>
       <div class="form-container">
-        <form class="traveler-form">
+        <form class="traveler-form" [formGroup]="form" [ngClass]="{ 'submitted': submitted }">
           <h2 class="traveler-title">Traveler 1: Adult</h2>
 
           <div class="form-field">
@@ -17,15 +16,17 @@
           </div>
 
           <div class="radio-group">
-            <label class="radio-label">Gender</label>
+            <label class="form-label">Gender</label>
             <div class="radio-buttons">
-              <div class="radio-button">
-                <div class="radio-circle radio-selected"></div>
-                <span class="radio-text">Male</span>
-              </div>
-              <div class="radio-button">
-                <div class="radio-circle"></div>
-                <span class="radio-text">Female</span>
+              <div class="radio-button" *ngFor="let option of genderOptions">
+                <p-radioButton 
+                  class="radio-circle"
+                  [inputId]="'gender_' + option.value" 
+                  name="gender" 
+                  [value]="option.value"
+                  formControlName="gender">
+                </p-radioButton>
+                <label class="radio-text" [for]="'gender_' + option.value">{{option.label}}</label>
               </div>
             </div>
           </div>
@@ -33,61 +34,52 @@
           <div class="date-group">
             <div class="dropdown-container">
               <label class="dropdown-label">Month of birth</label>
-              <div class="dropdown-field">
-                <span class="dropdown-value">06 – June</span>
-                <div class="dropdown-icon">
-                  <img
-                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/2e9c10671fc4ffd99e09cc687b8690c864bde1cc37ce0d29e7b368b3a846a950?placeholderIfAbsent=true&apiKey=0c853ebb838e4725aff326ea2ef7a109"
-                    class="icon-image"
-                    alt="dropdown icon"
-                  />
-                </div>
-              </div>
+              <p-dropdown 
+                class="dropdown-field"
+                [options]="monthOptions" 
+                formControlName="monthBirth"
+                placeholder="Month" 
+              >
+              </p-dropdown>
             </div>
 
             <div class="dropdown-container">
               <label class="dropdown-label">Day of birth</label>
-              <div class="dropdown-field">
-                <span class="dropdown-value">09</span>
-                <div class="dropdown-icon">
-                  <img
-                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/171df57d1433a7f19d9a88048aefadfa058b11980d353a4ce15c27aa2bf6e0b6?placeholderIfAbsent=true&apiKey=0c853ebb838e4725aff326ea2ef7a109"
-                    class="icon-image"
-                    alt="dropdown icon"
-                  />
-                </div>
-              </div>
+              <p-dropdown 
+                class="dropdown-field"
+                [options]="dayOptions" 
+                formControlName="dayBirth"
+                placeholder="Day" 
+              >
+              </p-dropdown>
             </div>
 
             <div class="dropdown-container">
               <label class="dropdown-label">Year of birth</label>
-                <!-- <p-select
-                  id="yearBirth"
-                  class="dropdown-field"
-                  formControlName="yearBirth"
-                  [options]="years"
-                  placeholder="Select year">
-                </p-select> -->
+              <p-dropdown 
+                class="dropdown-field"
+                [options]="yearOptions" 
+                formControlName="yearBirth"
+                placeholder="Year" 
+              >
+              </p-dropdown>
             </div>
           </div>
 
           <div class="dropdown-container citizenship-dropdown">
             <label class="dropdown-label">Citizenship</label>
-            <div class="dropdown-field">
-              <span class="dropdown-value">United States</span>
-              <div class="dropdown-icon">
-                <img
-                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/5ff20b710c7c248c497370a534efcb5778f64bf28dc860da7620a5e9ca8acdc9?placeholderIfAbsent=true&apiKey=0c853ebb838e4725aff326ea2ef7a109"
-                  class="icon-image"
-                  alt="dropdown icon"
-                />
-              </div>
-            </div>
+            <p-dropdown 
+              class="dropdown-field"
+              [options]="citizenshipOptions" 
+              formControlName="citizenship"
+              placeholder="Select Country" 
+            >
+            </p-dropdown>
           </div>
         </form>
 
         <div class="action-buttons">
-          <button class="btn btn-secondary">Back</button>
+          <button class="btn btn-secondary" (click)="onBack()">Back</button>
           <button class="btn btn-primary" (click)="onSubmit()">Confirm</button>
         </div>
       </div>
@@ -107,15 +99,14 @@
             </div>
             <span class="label-text">Flight</span>
           </div>
-          <span class="price-amount">$4,440.81</span>
+          <span class="price-amount">${{getPriceFormat(route.snapshot.queryParams['price'])}}</span>
         </div>
         <div class="total-price">
           <span class="total-label">Total</span>
           <div class="total-amount">
-            <span class="amount-large">$4,440</span>.81
+            <span class="amount-large">${{getPriceFormat(route.snapshot.queryParams['price'])}}</span>
           </div>
         </div>
       </div>
     </section>
-  </form>
 </div>

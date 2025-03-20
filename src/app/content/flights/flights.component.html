@@ -1,48 +1,91 @@
 <div class="flights-content">
   <div class="filters">
-    <div>
-      <label>Stops</label>
-      <select [(ngModel)]="filters.stops" (change)="displayedFlights$ = getFilteredAndSortedFlights()">
-        <option *ngFor="let stop of filters.stops" [value]="stop">{{ stop }} stop(s)</option>
-      </select>
+      <!-- Sort Options -->
+      <div class="p-field">
+      <h3>Sort By</h3>
+      <p-dropdown 
+        [options]="[
+          {label: 'Price (Low to High)', value: {field: 'price', order: 1}},
+          {label: 'Price (High to Low)', value: {field: 'price', order: -1}},
+          {label: 'Departure (Earliest)', value: {field: 'departure', order: 1}},
+          {label: 'Departure (Latest)', value: {field: 'departure', order: -1}},
+          {label: 'Duration (Shortest)', value: {field: 'duration', order: 1}},
+          {label: 'Duration (Longest)', value: {field: 'duration', order: -1}}
+        ]" 
+        (onChange)="onSortChange($event)"
+        placeholder="Select Sort Option">
+      </p-dropdown>
     </div>
-  
-    <div>
-      <label>Airlines</label>
-      <select [(ngModel)]="filters.airlines" (change)="displayedFlights$ = getFilteredAndSortedFlights()">
-        <option *ngFor="let airline of filters.airlines" [value]="airline">{{ airline }}</option>
-      </select>
-    </div>
-  
-    <div>
-      <label>Price Range</label>
-      ${{ filters.price[0] }} - ${{ filters.price[1] }}
+
+    <!-- Price Range Slider -->
+    <div class="p-field">
+      <h3>Price Range</h3>
+      <div class="p-d-flex p-jc-between">
+        <span>{{priceRange[0] | currency}}</span>
+        <span>{{priceRange[1] | currency}}</span>
+      </div>
       <p-slider 
-        [(ngModel)]="filters.price" 
-        (change)="displayedFlights$ = getFilteredAndSortedFlights()"
-        [range]="true" 
-        [min]="1"
-        [max]="filters.price[1]"
-        styleClass="w-56" 
-      /> 
+        styleClass="w-full"
+        [(ngModel)]="priceRange" 
+        [range]="true"
+        [min]="minPrice" 
+        [max]="maxPrice" 
+        (onSlideEnd)="applyFiltersAndSort()">
+      </p-slider>
     </div>
-  
-    <div>
-      <label>Sort By</label>
-      <select (change)="onSortChange($any($event.target).value)">
-        <option value="price">Price</option>
-        <option value="departure_time">Departure Time</option>
-      </select>
+
+    <!-- Stops Filter with Dynamic Checkboxes -->
+    <div class="p-field">
+      <h3>Stops</h3>
+      <div *ngFor="let stop of availableStops" class="p-field-checkbox">
+        <p-checkbox 
+          [value]="stop" 
+          [(ngModel)]="selectedStops" 
+          [inputId]="'stop' + stop"
+          (onChange)="applyFiltersAndSort()">
+        </p-checkbox>
+        <label [for]="'stop' + stop">
+          {{ service.getStopsLabel(stop) }}
+        </label>
+      </div>
     </div>
-    <range-slider (onChange)="changeFilter('amount', $event)"></range-slider>
-    filters
+
+    <!-- Airline Filter -->
+    <div class="p-field">
+      <h3>Airlines</h3>
+      {{ selectedAirlines }}
+      <p-listbox 
+        [options]="airlines" 
+        [(ngModel)]="selectedAirlines" 
+        [multiple]="true"
+        (onChange)="applyFiltersAndSort()">
+      </p-listbox>
+    </div>
+    
+    <!-- Airport Filter -->
+    <div class="p-field">
+      <h3>Airports</h3>
+      <p-listbox 
+        [options]="airports" 
+        [(ngModel)]="selectedAirports" 
+        [multiple]="true"
+        (onChange)="applyFiltersAndSort()">
+      </p-listbox>
+    </div>
   </div>
-  <div class="flights-list">
-    <ng-container *ngFor="let card of (displayedFlights$ | async)">
-      <app-card [data]="card" ></app-card> 
-    </ng-container>
-    <button class="show-more-button" *ngIf="(displayedFlights$ | async)?.length < flights?.length" (click)="showMore()">
-      Show more
-    </button>
+
+  <ng-container *ngIf="!loading">
+    <div class="flights-list">
+      <ng-container *ngFor="let card of displayedFlights">
+        <app-card [data]="card" ></app-card> 
+      </ng-container>
+      <button *ngIf="displayedFlights.length < filteredFlights.length" class="show-more-button" (click)="showMore()">
+        Show more
+      </button>
+    </div>
+  </ng-container>
+  <div *ngIf="loading" class="p-text-center">
+    <p-progressSpinner [style]="{width: '50px', height: '50px'}"></p-progressSpinner>
+    <div>Loading flights...</div>
   </div>
-</div>
+</div>  

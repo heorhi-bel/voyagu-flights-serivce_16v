@@ -1,26 +1,3 @@
-// .card{
-//     display: flex;
-//     flex-flow: row nowrap;
-//     width: 624px;
-//     height: 160px;
-//     .main{
-//         width: 414px;
-//         padding: 24px;
-//         .line{
-//             width: 100%;
-//             .logo{
-//                 width: 40px;
-//                 height: 40px;
-//             }
-            
-//         }
-//     }
-//     .side{
-//         width: 160px;
-//         padding: 24px;
-//     }
-// }
-
 :host {
     display: contents;
   }
@@ -30,36 +7,48 @@
     background-color: rgba(255, 255, 255, 1);
     border: 1px solid rgba(226, 224, 227, 1);
     display: flex;
+    justify-content: start;
+    flex-flow: row nowrap;
     align-items: stretch;
-    // overflow: hidden;
+    
     font-family:
       Inter,
       -apple-system,
       Roboto,
       Helvetica,
       sans-serif;
-    justify-content: start;
-    flex-wrap: wrap;
+    
+
+    .flight-segments {
+      align-self: start;
+      min-width: 240px;
+      padding: 24px;
+      font-size: 14px;
+      font-weight: 400;
+    }
+    .flight-segment {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      gap: 16px;
+      justify-content: start;
+    }
+    .flight-segment:not(:first-child) {
+      margin-top: 32px;
+    }
+
+    .booking-actions {
+      border-left: 1px solid rgba(226, 224, 227, 1);
+      display: flex;
+      padding: 16px 24px;
+      flex-direction: column;
+      overflow: hidden;
+      align-items: stretch;
+      justify-content: end;
+      width: 210px;
+    }
   }
-  .flight-segments {
-    align-self: start;
-    min-width: 240px;
-    padding: 24px;
-    // overflow: hidden;
-    font-size: 14px;
-    font-weight: 400;
-  }
-  .flight-segment {
-    display: flex;
-    width: 100%;
-    align-items: center;
-    gap: 16px;
-    // overflow: hidden;
-    justify-content: start;
-  }
-  .flight-segment:not(:first-child) {
-    margin-top: 32px;
-  }
+ 
   .airline-logo {
     object-fit: contain;
     object-position: center;
@@ -120,16 +109,7 @@
   .flight-type {
     color: rgba(137, 131, 144, 1);
   }
-  .booking-actions {
-    border-left: 1px solid rgba(226, 224, 227, 1);
-    display: flex;
-    padding: 16px 24px;
-    flex-direction: column;
-    overflow: hidden;
-    align-items: stretch;
-    justify-content: end;
-    width: 210px;
-  }
+  
 
   .price-container {
     align-self: center;
