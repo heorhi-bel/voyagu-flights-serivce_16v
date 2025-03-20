@@ -3,7 +3,6 @@ import { FlightsService } from '../flights.service';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Traveler, TravelerFormType } from 'src/app/core/models/flight.model';
-import { StateService } from '../state.service';
 import { CitizenshipOptions, DayOptions, Genders, MonthOptions, YearOptions } from 'src/app/core/models/dictionaries';
 
 
@@ -23,7 +22,6 @@ export class FlightBookComponent implements OnInit{
   submitted = false;
   constructor(
     private service: FlightsService, 
-    private stateService: StateService, 
     private router: Router,
     protected route: ActivatedRoute
   ) {}
@@ -33,8 +31,6 @@ export class FlightBookComponent implements OnInit{
       this.router.navigate(['/flights']);
       return;
     }
-    console.log("data::", this.route.snapshot)
-    // this.form = this.service.createForm(this.route.snapshot.params['id']);
     const currentYear = new Date().getFullYear();
     
     this.form.patchValue(JSON.parse(sessionStorage.getItem('form')!));
@@ -53,13 +49,11 @@ export class FlightBookComponent implements OnInit{
     
     sessionStorage.setItem('form', JSON.stringify(this.form.value));
     
-    // Display submission data
     console.log('Booking submitted:', {
       flightId: this.form.controls['id'].value,
       form: formRaw,
     });
     
-    // You could use PrimeNG Toast instead of alert
     alert(`Booking submitted successfully!\nFlight ID: ${formRaw.id}\nPassenger: ${formRaw.firstName} ${formRaw.lastName}`);
   
   }

@@ -3,7 +3,6 @@ import { FlightsService } from './flights.service';
 import { BehaviorSubject, map, Observable, Subscription } from 'rxjs';
 import { Flight } from 'src/app/core/models/flight.model';
 import { Router } from '@angular/router';
-import { StateService } from './state.service';
 
 @Component({
   selector: 'app-flights',
@@ -33,7 +32,7 @@ export class FlightsComponent implements OnInit, OnDestroy{
 
   // Sorting
   sortField: string = 'price';
-  sortOrder: number = 1; // 1 for ascending, -1 for descending
+  sortOrder: number = 1;
 
   loading: boolean = false;
 
@@ -42,7 +41,6 @@ export class FlightsComponent implements OnInit, OnDestroy{
   constructor(
     protected service: FlightsService, 
     private router: Router,     
-    private stateService: StateService,
   ) {}
 
   ngOnInit(): void {
@@ -89,7 +87,6 @@ export class FlightsComponent implements OnInit, OnDestroy{
     });
   }
   applyFiltersAndSort(): void {
-    console.log("sort")
     // Apply airline filter
     let result = this.flights;
   
@@ -168,7 +165,6 @@ export class FlightsComponent implements OnInit, OnDestroy{
   }
 
   onSortChange(event: any){
-    console.log("sort change :: :: <-- <---")
     const { field, order } = event.value;
     this.sortField = field;
     this.sortOrder = order;
