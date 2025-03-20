@@ -9,7 +9,7 @@ Added:
    
 ## Angular 16.1.0, Node.js 18.10.0, primeNG@16
 Instractions: 
-  1) github pages - 
+  1) github pages - https://heorhi-bel.github.io/voyagu-flights-serivce_16v/ (actually not working)
   2)
      - git clone https://github.com/heorhi-bel/voyagu-flights-serivce_16v.git
      - npm install
