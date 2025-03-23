@@ -13,4 +13,4 @@ Instractions:
   2)
      - git clone https://github.com/heorhi-bel/voyagu-flights-serivce_16v.git
      - npm install
-     - npm run start (Ignore the warnings)
+     - ng serve --configuration=development (Ignore the warnings)
